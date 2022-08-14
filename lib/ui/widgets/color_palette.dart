@@ -1,5 +1,9 @@
+import 'dart:html';
+
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import '../../utils/color_utils.dart';
+import 'package:get/get.dart';
 
 class ColorPalette extends StatelessWidget {
   const ColorPalette({
@@ -13,10 +17,10 @@ class ColorPalette extends StatelessWidget {
   }) : super(key: key);
 
   // atributos de la clase, por ejemplo
-  final int baseColor;
-  final int baseColor1;
-  final int baseColor2;
-  final int baseColor3;
+  final String baseColor;
+  final String baseColor1;
+  final String baseColor2;
+  final String baseColor3;
 
   // también se puede tener como un atributo un callback, necesario ya que es un
   // widget sin estado, por ejemplo
@@ -24,6 +28,10 @@ class ColorPalette extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int color0 = int.parse('0xFF' + baseColor);
+    int color1 = int.parse('0xFF' + baseColor1);
+    int color2 = int.parse('0xFF' + baseColor2);
+    int color3 = int.parse('0xFF' + baseColor3);
     // padding para crear espacio alrededor del widget
     return Padding(
         padding: const EdgeInsets.all(8.0),
@@ -34,44 +42,41 @@ class ColorPalette extends StatelessWidget {
             flex: 4,
             child: InkWell(
                 onTap: () {
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      backgroundColor: Color(baseColor),
-                      content: Text('Color Palette - Valor Copiado')));
+                  showColor(baseColor);
                 },
-                child: Ink(height: 100, width: 500, color: Color(baseColor))),
+                child: Ink(height: 100, width: 500, color: Color(color0))),
           ),
-
           Expanded(
               flex: 3,
               child: InkWell(
                   onTap: () {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        backgroundColor: Color(baseColor1),
-                        content: Text('Color Palette - Valor Copiado')));
+                    showColor(baseColor1);
                   },
-                  child:
-                      Ink(height: 100, width: 500, color: Color(baseColor1)))),
+                  child: Ink(height: 100, width: 500, color: Color(color1)))),
           Expanded(
               flex: 2,
               child: InkWell(
                   onTap: () {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        backgroundColor: Color(baseColor2),
-                        content: Text('Color Palette - Valor Copiado')));
+                    showColor(baseColor2);
                   },
-                  child:
-                      Ink(height: 100, width: 500, color: Color(baseColor2)))),
+                  child: Ink(height: 100, width: 500, color: Color(color2)))),
           Expanded(
               flex: 1,
               child: InkWell(
                   onTap: () {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        backgroundColor: Color(baseColor3),
-                        content: Text('Color Palette - Valor Copiado')));
+                    showColor(baseColor3);
                   },
-                  child:
-                      Ink(height: 100, width: 500, color: Color(baseColor3)))),
-          //Container(color: Color(baseColor), width: 50, height: 50),
+                  child: Ink(height: 100, width: 500, color: Color(color3)))),
         ]));
+  }
+
+  void showColor(String value) {
+    Clipboard.setData(ClipboardData(text: value));
+    Get.snackbar(
+      'Color palette',
+      'Valor copiado = $value',
+      backgroundColor: ColorUtils.FromHex(value),
+      snackPosition: SnackPosition.BOTTOM,
+    );
   }
 }
