@@ -25,9 +25,55 @@ class ColorSelectionPage extends StatelessWidget {
           ],
         ),
         // https://colorhunt.co/
-        body: (const Center(
-          child: Text(
-              "SingleChildScrollView -> Column -> [ColorPalette, ColorPalette] "),
+        body: (Center(
+          child: SingleChildScrollView(
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  ColorPalette(
+                    baseColor: 0xFF293462,
+                    baseColor1: 0xFF1CD6CE,
+                    baseColor2: 0xFFFEDB39,
+                    baseColor3: 0xFFD61C4E,
+                    callback: (String) {},
+                  ),
+                  ColorPalette(
+                    baseColor: 0xFF554994,
+                    baseColor1: 0xFFF675A8,
+                    baseColor2: 0xFFF29393,
+                    baseColor3: 0xFFFFCCB3,
+                    callback: (String) {},
+                  ),
+                  ColorPalette(
+                    baseColor: 0xFFAC4425,
+                    baseColor1: 0xFF224B0C,
+                    baseColor2: 0xFFC1D5A4,
+                    baseColor3: 0xFFF0F2B6,
+                    callback: (String) {},
+                  ),
+                  ColorPalette(
+                    baseColor: 0xFFC21010,
+                    baseColor1: 0xFFE64848,
+                    baseColor2: 0xFFFFFDE3,
+                    baseColor3: 0xFFCFE8A9,
+                    callback: (String) {},
+                  ),
+                  ColorPalette(
+                    baseColor: 0xFF100720,
+                    baseColor1: 0xFF31087B,
+                    baseColor2: 0xFFFA2FB5,
+                    baseColor3: 0xFFFFC23C,
+                    callback: (String) {},
+                  ),
+                  ColorPalette(
+                    baseColor: 0xFFEAE509,
+                    baseColor1: 0xFF7DCE13,
+                    baseColor2: 0xFF5BB318,
+                    baseColor3: 0xFF2B7A0B,
+                    callback: (String) {},
+                  ),
+                ]),
+          ),
         )));
   }
 
